@@ -43,6 +43,7 @@ namespace Common
         public static T FromJson<T>( string strJson ) where T : class
         {
             //!string.IsNullOrEmpty(strJson)替换为!strJson.IsNullOrEmpty()
+            //从dev提交到master
             if ( !strJson.IsNullOrEmpty() )
                 return JsonConvert.DeserializeObject<T>( strJson );
             return null;
