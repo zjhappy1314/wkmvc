@@ -41,8 +41,9 @@ namespace Common
         /// <param name="strJson"></param>
         /// <returns></returns>
         public static T FromJson<T>( string strJson ) where T : class
-        {            
-            if ( !string.IsNullOrEmpty(strJson) )
+        {
+
+            if ( !strJson.IsNullOrEmpty() )
                 return JsonConvert.DeserializeObject<T>( strJson );
             return null;
         }
