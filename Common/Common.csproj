@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cryptHelper\AESCrypt.cs" />
     <Compile Include="cryptHelper\DESCrypt.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="JsonHelper\AjaxResult.cs" />
