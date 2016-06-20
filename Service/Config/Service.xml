@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<objects xmlns="http://www.sprongframework.net">
+<objects xmlns="http://www.springframework.net">
   <description>Spring注入Service，容器指向本层层封装的接口，舍弃Dao层，减少代码量</description>
   <!--系统管理Begin-->
   <!--用户管理-->
