@@ -33,6 +33,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\pf\boxoffice\Enlight.Picture.BoxOffice\Code\Application\ImportAutoQueue\bin\Debug\Newtonsoft.Json.dll</HintPath>
@@ -57,6 +60,9 @@
     <Compile Include="JsonHelper\JsonConverter.cs" />
     <Compile Include="JsonHelper\JsonHelper.cs" />
     <Compile Include="JsonHelper\JsonSplit.cs" />
+    <Compile Include="log4net.Ext\ExtLogImpl.cs" />
+    <Compile Include="log4net.Ext\ExtLogManager.cs" />
+    <Compile Include="log4net.Ext\IExtLog.cs" />
     <Compile Include="PageCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolsHelper\RegexHelper.cs" />

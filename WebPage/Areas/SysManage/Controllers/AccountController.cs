@@ -15,6 +15,10 @@ namespace WebPage.Areas.SysManage.Controllers
         /// 用户管理
         /// </summary>
         IUserManage UserManage { get; set; }
+        /// <summary>
+        /// 日志记录
+        /// </summary>
+        log4net.Ext.IExtLog log = log4net.Ext.ExtLogManager.GetLogger( "dblog" );
         #endregion
 
         #region 基本视图
@@ -39,18 +43,22 @@ namespace WebPage.Areas.SysManage.Controllers
                     if ( users.ISCANLOGIN == 1 )
                     {
                         json.Msg = "用户已锁定，禁止登陆，请联系管理员";
+                        log.Warn( Utils.GetIP(), item.ACCOUNT, Request.Url.ToString(), "Login", "登陆系统，登陆结果" + json.Msg );
                         return Json( json );
                     }
                     json.Status = "y";
+                    log.Warn( Utils.GetIP(), item.ACCOUNT, Request.Url.ToString(), "Login", "登陆系统，登陆结果" + json.Msg );
                 }
                 else
                 {
                     json.Msg = "用户名或者密码不正确";
+                    log.Warn( Utils.GetIP(), item.ACCOUNT, Request.Url.ToString(), "Login", "登陆系统，登陆结果" + json.Msg );
                 }
             }
             catch ( Exception e )
             {
                 json.Msg = e.Message;
+                log.Warn( Utils.GetIP(), item.ACCOUNT, Request.Url.ToString(), "Login", "登陆系统，登陆结果" + json.Msg );
             }
             return Json( json, JsonRequestBehavior.AllowGet );
         }
