@@ -51,5 +51,30 @@ namespace Service.ServiceImp
             }
             return query.First().NAME;
         }
+
+        #region IUserManage 成员
+
+
+        public string GetUserDptName( int id )
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Remove( int userId )
+        {
+            throw new NotImplementedException();
+        }
+
+        public Account GetAccountByUser( Domain.SYS_USER user )
+        {
+            throw new NotImplementedException();
+        }
+
+        public Account GetAccountByCookie()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

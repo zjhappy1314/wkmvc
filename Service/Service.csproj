@@ -50,12 +50,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account.cs" />
     <Compile Include="DatabaseExtensions.cs" />
     <Compile Include="IRepository.cs" />
+    <Compile Include="IService\SysManage\IPermissionManage.cs" />
+    <Compile Include="IService\SysManage\IPostUserManage.cs" />
+    <Compile Include="IService\SysManage\IUserInfoManager.cs" />
     <Compile Include="IService\SysManage\IUserManage.cs" />
+    <Compile Include="IService\SysManage\IUserPermissionManage.cs" />
+    <Compile Include="IService\SysManage\IUserRoleManage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryBase.cs" />
+    <Compile Include="ServiceImp\SysManage\PermissionManage.cs" />
+    <Compile Include="ServiceImp\SysManage\PostUserManage.cs" />
+    <Compile Include="ServiceImp\SysManage\UserInfoManage.cs" />
     <Compile Include="ServiceImp\SysManage\UserManage.cs" />
+    <Compile Include="ServiceImp\SysManage\UserPermissionManage.cs" />
+    <Compile Include="ServiceImp\SysManage\UserRoleManage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

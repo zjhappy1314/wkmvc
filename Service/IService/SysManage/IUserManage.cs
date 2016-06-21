@@ -26,5 +26,28 @@ namespace Service.IService
         /// <param name="userId">用户ID</param>
         /// <returns></returns>
         string GetUserName( int userId );
+        /// <summary>
+        /// 根据用户ID获取本职部门名称
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        string GetUserDptName( int id );
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        bool Remove( int userId );
+        /// <summary>
+        /// 根据用户构造用户基本信息
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        Account GetAccountByUser( Domain.SYS_USER user );
+        /// <summary>
+        /// 从cookie中获取用户信息
+        /// </summary>
+        /// <returns></returns>
+        Account GetAccountByCookie();
     }
 }
