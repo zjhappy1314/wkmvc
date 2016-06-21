@@ -5,7 +5,38 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="88423a53e55d4f5681c53e24f942a56f" Name="Diagram1">
-        <EntityTypeShape EntityType="Domain.SYS_USER" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Domain.SYS_USER" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Domain.SYS_CODE" Width="1.5" PointX="2.375" PointY="8.125" />
+        <EntityTypeShape EntityType="Domain.SYS_CODE_AREA" Width="1.5" PointX="0.5" PointY="8" />
+        <EntityTypeShape EntityType="Domain.SYS_DEPARTMENT" Width="1.5" PointX="2.25" PointY="0.875" />
+        <EntityTypeShape EntityType="Domain.SYS_LOG" Width="1.5" PointX="4.25" PointY="8.5" />
+        <EntityTypeShape EntityType="Domain.SYS_MODULE" Width="1.5" PointX="7.875" PointY="5.375" />
+        <EntityTypeShape EntityType="Domain.SYS_PERMISSION" Width="1.5" PointX="9.75" PointY="5.375" />
+        <EntityTypeShape EntityType="Domain.SYS_POST" Width="1.5" PointX="4.125" PointY="5.375" />
+        <EntityTypeShape EntityType="Domain.SYS_POST_DEPARTMENT" Width="1.5" PointX="4" PointY="0.875" />
+        <EntityTypeShape EntityType="Domain.SYS_POST_USER" Width="1.5" PointX="5.875" PointY="0.875" />
+        <EntityTypeShape EntityType="Domain.SYS_ROLE" Width="1.5" PointX="7.625" PointY="0.875" />
+        <EntityTypeShape EntityType="Domain.SYS_ROLE_PERMISSION" Width="1.5" PointX="12" PointY="5.75" />
+        <EntityTypeShape EntityType="Domain.SYS_SYSTEM" Width="1.5" PointX="6" PointY="5.375" />
+        <EntityTypeShape EntityType="Domain.SYS_USER_DEPARTMENT" Width="1.5" PointX="2.5" PointY="5.875" />
+        <EntityTypeShape EntityType="Domain.SYS_USER_PERMISSION" Width="1.5" PointX="11.75" PointY="1" />
+        <EntityTypeShape EntityType="Domain.SYS_USER_ROLE" Width="1.5" PointX="9.5" PointY="0.875" />
+        <EntityTypeShape EntityType="Domain.SYS_USERINFO" Width="1.5" PointX="0.5" PointY="6.375" />
+        <AssociationConnector Association="Domain.FK_SYS_POST_DEPARTMENT_DPTID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_DEPARTMENT_DPTID" />
+        <AssociationConnector Association="Domain.FK_SYS_MODULE_SYSTEMID" />
+        <AssociationConnector Association="Domain.FK_SYS_PERMISSION_MODULEID" />
+        <AssociationConnector Association="Domain.FK_SYS_ROLE_PERMISSION_PERID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_PERMISSION_PERID" />
+        <AssociationConnector Association="Domain.FK_SYS_POST_DEPARTMENT_POSTID" />
+        <AssociationConnector Association="Domain.FK_SYS_POST_USER_POSTDPTID" />
+        <AssociationConnector Association="Domain.FK_SYS_POST_USER_USERID" />
+        <AssociationConnector Association="Domain.FK_SYS_ROLE_PERMISSION_ROLEID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_ROLE_ROLEID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_DEPARTMENT_USERID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_PERMISSION_USERID" />
+        <AssociationConnector Association="Domain.FK_SYS_USER_ROLE_USERID" />
+        <AssociationConnector Association="Domain.FK_SYS_USERINFO_SYSUSERID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

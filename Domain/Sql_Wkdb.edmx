@@ -4,7 +4,164 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Domain.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SYS_CODE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODETYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="NAMETEXT" Type="nvarchar" MaxLength="200" />
+          <Property Name="CODEVALUE" Type="nvarchar" MaxLength="100" />
+          <Property Name="SHOWORDER" Type="int" />
+          <Property Name="ISCODE" Type="int" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="2000" />
+          <Property Name="CREATEDATE" Type="datetime" />
+          <Property Name="CREATEUSER" Type="nvarchar" MaxLength="36" />
+          <Property Name="UPDATEDATE" Type="datetime" />
+          <Property Name="UPDATEUSER" Type="nvarchar" MaxLength="36" />
+          <Property Name="PARENTID" Type="int" />
+        </EntityType>
+        <EntityType Name="SYS_CODE_AREA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="LEVELS" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="CODE" Type="nvarchar" MaxLength="100" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="BUSINESSLEVEL" Type="int" />
+          <Property Name="SHOWORDER" Type="int" />
+          <Property Name="CREATEPERID" Type="nvarchar" MaxLength="36" />
+          <Property Name="CREATEDATE" Type="date" />
+          <Property Name="PARENTID" Type="nvarchar" MaxLength="36" />
+          <Property Name="UPDATEDATE" Type="date" />
+          <Property Name="UPDATEUSER" Type="nvarchar" MaxLength="36" />
+          <Property Name="PARENTCODE" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SYS_LOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATES" Type="datetime" />
+          <Property Name="LEVELS" Type="nvarchar" MaxLength="20" />
+          <Property Name="LOGGER" Type="nvarchar" MaxLength="200" />
+          <Property Name="CLIENTUSER" Type="nvarchar" MaxLength="100" />
+          <Property Name="CLIENTIP" Type="nvarchar" MaxLength="20" />
+          <Property Name="REQUESTURL" Type="nvarchar" MaxLength="500" />
+          <Property Name="ACTION" Type="nvarchar" MaxLength="20" />
+          <Property Name="MESSAGE" Type="nvarchar" MaxLength="4000" />
+          <Property Name="EXCEPTION" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="SYS_MODULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_BELONGSYSTEM" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="PARENTID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="ALIAS" Type="nvarchar" MaxLength="50" />
+          <Property Name="MODULETYPE" Type="int" Nullable="false" />
+          <Property Name="ICON" Type="nvarchar" MaxLength="200" />
+          <Property Name="MODULEPATH" Type="nvarchar" MaxLength="500" />
+          <Property Name="ISSHOW" Type="int" Nullable="false" />
+          <Property Name="SHOWORDER" Type="int" Nullable="false" />
+          <Property Name="LEVELS" Type="int" Nullable="false" />
+          <Property Name="IsVillage" Type="bit" Nullable="false" />
+          <Property Name="CREATEUSER" Type="nvarchar" MaxLength="50" />
+          <Property Name="CREATEDATE" Type="datetime" />
+          <Property Name="UPDATEUSER" Type="nvarchar" MaxLength="36" />
+          <Property Name="UPDATEDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SYS_PERMISSION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MODULEID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="36" />
+          <Property Name="PERVALUE" Type="nvarchar" MaxLength="100" />
+          <Property Name="ICON" Type="nvarchar" MaxLength="50" />
+          <Property Name="SHOWORDER" Type="int" />
+          <Property Name="CREATEDATE" Type="date" />
+          <Property Name="CREATEUSER" Type="nvarchar" MaxLength="36" />
+          <Property Name="UPDATEDATE" Type="date" />
+          <Property Name="UPDATEUSER" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="SYS_POST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="POSTNAME" Type="nvarchar" MaxLength="100" />
+          <Property Name="POSTTYPE" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="500" />
+          <Property Name="SHOWORDER" Type="int" />
+          <Property Name="CREATEUSERID" Type="int" />
+          <Property Name="CREATEDATE" Type="datetime" Nullable="false" />
+          <Property Name="UPDATEDATE" Type="datetime" />
+          <Property Name="UPDATEUSER" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="SYS_POST_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_DEPARTMENT_ID" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="FK_POST_ID" Type="nvarchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_POST_USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_USERID" Type="int" Nullable="false" />
+          <Property Name="FK_POST_DEPARTMENTID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_ROLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLENAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="ISCUSTOM" Type="int" Nullable="false" />
+          <Property Name="ROLEDESC" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CREATEPERID" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="CREATEDATE" Type="datetime" Nullable="false" />
+          <Property Name="UPDATEDATE" Type="datetime" Nullable="false" />
+          <Property Name="UPDATEUSER" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <EntityType Name="SYS_ROLE_PERMISSION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLEID" Type="int" Nullable="false" />
+          <Property Name="PERMISSIONID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_SYSTEM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="SITEURL" Type="nvarchar" MaxLength="500" />
+          <Property Name="IS_LOGIN" Type="tinyint" />
+          <Property Name="DOCKUSER" Type="nvarchar" MaxLength="100" />
+          <Property Name="DOCKPASS" Type="nvarchar" MaxLength="200" />
+          <Property Name="CREATEDATE" Type="date" />
+          <Property Name="REMARK" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
         <EntityType Name="SYS_USER">
           <Key>
             <PropertyRef Name="ID" />
@@ -27,11 +184,332 @@
           <Property Name="UPDATEDATE" Type="datetime" />
           <Property Name="LastLoginIP" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="SYS_USER_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="USER_ID" Type="int" Nullable="false" />
+          <Property Name="DEPARTMENT_ID" Type="nvarchar" MaxLength="36" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_USER_PERMISSION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_USERID" Type="int" Nullable="false" />
+          <Property Name="FK_PERMISSIONID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_USER_ROLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FK_USERID" Type="int" Nullable="false" />
+          <Property Name="FK_ROLEID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_USERINFO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="USERID" Type="int" Nullable="false" />
+          <Property Name="POSTCODE" Type="int" />
+          <Property Name="PHONE" Type="nvarchar" MaxLength="200" />
+          <Property Name="OFFICEPHONE" Type="nvarchar" MaxLength="200" />
+          <Property Name="EMAILADDRESS" Type="nvarchar" MaxLength="200" />
+          <Property Name="SECONDPHONE" Type="nvarchar" MaxLength="200" />
+          <Property Name="WORKCODE" Type="int" />
+          <Property Name="SEXCODE" Type="int" />
+          <Property Name="BIRTHDAY" Type="datetime" />
+          <Property Name="NATIONCODE" Type="int" />
+          <Property Name="IDNUMBER" Type="nvarchar" MaxLength="18" />
+          <Property Name="MARRYCODE" Type="int" />
+          <Property Name="IDENTITYCODE" Type="int" />
+          <Property Name="HomeTown" Type="nvarchar" MaxLength="200" />
+          <Property Name="ACCOUNTLOCATION" Type="nvarchar" MaxLength="200" />
+          <Property Name="XUELI" Type="int" />
+          <Property Name="ZHICHENG" Type="int" />
+          <Property Name="GRADUATIONSCHOOL" Type="nvarchar" MaxLength="200" />
+          <Property Name="SPECIALTY" Type="nvarchar" MaxLength="200" />
+          <Property Name="PHOTOOLDNAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="PHOTONEWNAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="PHOTOTYPE" Type="nvarchar" MaxLength="200" />
+          <Property Name="RESUMEOLDNAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="RESUMENEWNAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="RESUMETYPE" Type="nvarchar" MaxLength="200" />
+          <Property Name="HuJiSuoZaiDi" Type="nvarchar" MaxLength="200" />
+          <Property Name="HUJIPAICHUSUO" Type="nvarchar" MaxLength="200" />
+          <Property Name="WORKDATE" Type="datetime" />
+          <Property Name="JINRUDATE" Type="datetime" />
+          <Property Name="CARNUMBER" Type="nvarchar" MaxLength="200" />
+          <Property Name="QQ" Type="nvarchar" MaxLength="15" />
+          <Property Name="WEBCHATOPENID" Type="nvarchar" MaxLength="200" />
+          <Property Name="CREATEDATE" Type="datetime" />
+          <Property Name="CREATEUSER" Type="nvarchar" MaxLength="36" />
+          <Property Name="UPDATEDATE" Type="datetime" />
+          <Property Name="UPDATEUSER" Type="nvarchar" MaxLength="36" />
+        </EntityType>
+        <Association Name="FK_SYS_MODULE_SYSTEMID">
+          <End Role="SYS_SYSTEM" Type="Self.SYS_SYSTEM" Multiplicity="1" />
+          <End Role="SYS_MODULE" Type="Self.SYS_MODULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_SYSTEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_MODULE">
+              <PropertyRef Name="FK_BELONGSYSTEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_PERMISSION_MODULEID">
+          <End Role="SYS_MODULE" Type="Self.SYS_MODULE" Multiplicity="1" />
+          <End Role="SYS_PERMISSION" Type="Self.SYS_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_MODULE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_PERMISSION">
+              <PropertyRef Name="MODULEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_POST_DEPARTMENT_DPTID">
+          <End Role="SYS_DEPARTMENT" Type="Self.SYS_DEPARTMENT" Multiplicity="1" />
+          <End Role="SYS_POST_DEPARTMENT" Type="Self.SYS_POST_DEPARTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_DEPARTMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_POST_DEPARTMENT">
+              <PropertyRef Name="FK_DEPARTMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_POST_DEPARTMENT_POSTID">
+          <End Role="SYS_POST" Type="Self.SYS_POST" Multiplicity="1" />
+          <End Role="SYS_POST_DEPARTMENT" Type="Self.SYS_POST_DEPARTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_POST">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_POST_DEPARTMENT">
+              <PropertyRef Name="FK_POST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_POST_USER_POSTDPTID">
+          <End Role="SYS_POST_DEPARTMENT" Type="Self.SYS_POST_DEPARTMENT" Multiplicity="1" />
+          <End Role="SYS_POST_USER" Type="Self.SYS_POST_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_POST_DEPARTMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_POST_USER">
+              <PropertyRef Name="FK_POST_DEPARTMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_POST_USER_USERID">
+          <End Role="SYS_USER" Type="Self.SYS_USER" Multiplicity="1" />
+          <End Role="SYS_POST_USER" Type="Self.SYS_POST_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_POST_USER">
+              <PropertyRef Name="FK_USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_ROLE_PERMISSION_PERID">
+          <End Role="SYS_PERMISSION" Type="Self.SYS_PERMISSION" Multiplicity="1" />
+          <End Role="SYS_ROLE_PERMISSION" Type="Self.SYS_ROLE_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_PERMISSION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_ROLE_PERMISSION">
+              <PropertyRef Name="PERMISSIONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_ROLE_PERMISSION_ROLEID">
+          <End Role="SYS_ROLE" Type="Self.SYS_ROLE" Multiplicity="1" />
+          <End Role="SYS_ROLE_PERMISSION" Type="Self.SYS_ROLE_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_ROLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_ROLE_PERMISSION">
+              <PropertyRef Name="ROLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_DEPARTMENT_DPTID">
+          <End Role="SYS_DEPARTMENT" Type="Self.SYS_DEPARTMENT" Multiplicity="1" />
+          <End Role="SYS_USER_DEPARTMENT" Type="Self.SYS_USER_DEPARTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_DEPARTMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_DEPARTMENT">
+              <PropertyRef Name="DEPARTMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_DEPARTMENT_USERID">
+          <End Role="SYS_USER" Type="Self.SYS_USER" Multiplicity="1" />
+          <End Role="SYS_USER_DEPARTMENT" Type="Self.SYS_USER_DEPARTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_DEPARTMENT">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_PERMISSION_PERID">
+          <End Role="SYS_PERMISSION" Type="Self.SYS_PERMISSION" Multiplicity="1" />
+          <End Role="SYS_USER_PERMISSION" Type="Self.SYS_USER_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_PERMISSION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_PERMISSION">
+              <PropertyRef Name="FK_PERMISSIONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_PERMISSION_USERID">
+          <End Role="SYS_USER" Type="Self.SYS_USER" Multiplicity="1" />
+          <End Role="SYS_USER_PERMISSION" Type="Self.SYS_USER_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_PERMISSION">
+              <PropertyRef Name="FK_USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_ROLE_ROLEID">
+          <End Role="SYS_ROLE" Type="Self.SYS_ROLE" Multiplicity="1" />
+          <End Role="SYS_USER_ROLE" Type="Self.SYS_USER_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_ROLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_ROLE">
+              <PropertyRef Name="FK_ROLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_ROLE_USERID">
+          <End Role="SYS_USER" Type="Self.SYS_USER" Multiplicity="1" />
+          <End Role="SYS_USER_ROLE" Type="Self.SYS_USER_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_ROLE">
+              <PropertyRef Name="FK_USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USERINFO_SYSUSERID">
+          <End Role="SYS_USER" Type="Self.SYS_USER" Multiplicity="1" />
+          <End Role="SYS_USERINFO" Type="Self.SYS_USERINFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USERINFO">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DomainStoreContainer">
+          <EntitySet Name="SYS_CODE" EntityType="Self.SYS_CODE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_CODE_AREA" EntityType="Self.SYS_CODE_AREA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_DEPARTMENT" EntityType="Self.SYS_DEPARTMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_LOG" EntityType="Self.SYS_LOG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_MODULE" EntityType="Self.SYS_MODULE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_PERMISSION" EntityType="Self.SYS_PERMISSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_POST" EntityType="Self.SYS_POST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_POST_DEPARTMENT" EntityType="Self.SYS_POST_DEPARTMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_POST_USER" EntityType="Self.SYS_POST_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_ROLE" EntityType="Self.SYS_ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_ROLE_PERMISSION" EntityType="Self.SYS_ROLE_PERMISSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_SYSTEM" EntityType="Self.SYS_SYSTEM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_USER" EntityType="Self.SYS_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_USER_DEPARTMENT" EntityType="Self.SYS_USER_DEPARTMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_USER_PERMISSION" EntityType="Self.SYS_USER_PERMISSION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_USER_ROLE" EntityType="Self.SYS_USER_ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_USERINFO" EntityType="Self.SYS_USERINFO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_SYS_MODULE_SYSTEMID" Association="Self.FK_SYS_MODULE_SYSTEMID">
+            <End Role="SYS_SYSTEM" EntitySet="SYS_SYSTEM" />
+            <End Role="SYS_MODULE" EntitySet="SYS_MODULE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_PERMISSION_MODULEID" Association="Self.FK_SYS_PERMISSION_MODULEID">
+            <End Role="SYS_MODULE" EntitySet="SYS_MODULE" />
+            <End Role="SYS_PERMISSION" EntitySet="SYS_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_POST_DEPARTMENT_DPTID" Association="Self.FK_SYS_POST_DEPARTMENT_DPTID">
+            <End Role="SYS_DEPARTMENT" EntitySet="SYS_DEPARTMENT" />
+            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_POST_DEPARTMENT_POSTID" Association="Self.FK_SYS_POST_DEPARTMENT_POSTID">
+            <End Role="SYS_POST" EntitySet="SYS_POST" />
+            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_POST_USER_POSTDPTID" Association="Self.FK_SYS_POST_USER_POSTDPTID">
+            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
+            <End Role="SYS_POST_USER" EntitySet="SYS_POST_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_POST_USER_USERID" Association="Self.FK_SYS_POST_USER_USERID">
+            <End Role="SYS_USER" EntitySet="SYS_USER" />
+            <End Role="SYS_POST_USER" EntitySet="SYS_POST_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_ROLE_PERMISSION_PERID" Association="Self.FK_SYS_ROLE_PERMISSION_PERID">
+            <End Role="SYS_PERMISSION" EntitySet="SYS_PERMISSION" />
+            <End Role="SYS_ROLE_PERMISSION" EntitySet="SYS_ROLE_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_ROLE_PERMISSION_ROLEID" Association="Self.FK_SYS_ROLE_PERMISSION_ROLEID">
+            <End Role="SYS_ROLE" EntitySet="SYS_ROLE" />
+            <End Role="SYS_ROLE_PERMISSION" EntitySet="SYS_ROLE_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_DEPARTMENT_DPTID" Association="Self.FK_SYS_USER_DEPARTMENT_DPTID">
+            <End Role="SYS_DEPARTMENT" EntitySet="SYS_DEPARTMENT" />
+            <End Role="SYS_USER_DEPARTMENT" EntitySet="SYS_USER_DEPARTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_DEPARTMENT_USERID" Association="Self.FK_SYS_USER_DEPARTMENT_USERID">
+            <End Role="SYS_USER" EntitySet="SYS_USER" />
+            <End Role="SYS_USER_DEPARTMENT" EntitySet="SYS_USER_DEPARTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_PERMISSION_PERID" Association="Self.FK_SYS_USER_PERMISSION_PERID">
+            <End Role="SYS_PERMISSION" EntitySet="SYS_PERMISSION" />
+            <End Role="SYS_USER_PERMISSION" EntitySet="SYS_USER_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_PERMISSION_USERID" Association="Self.FK_SYS_USER_PERMISSION_USERID">
+            <End Role="SYS_USER" EntitySet="SYS_USER" />
+            <End Role="SYS_USER_PERMISSION" EntitySet="SYS_USER_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_ROLE_ROLEID" Association="Self.FK_SYS_USER_ROLE_ROLEID">
+            <End Role="SYS_ROLE" EntitySet="SYS_ROLE" />
+            <End Role="SYS_USER_ROLE" EntitySet="SYS_USER_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_ROLE_USERID" Association="Self.FK_SYS_USER_ROLE_USERID">
+            <End Role="SYS_USER" EntitySet="SYS_USER" />
+            <End Role="SYS_USER_ROLE" EntitySet="SYS_USER_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USERINFO_SYSUSERID" Association="Self.FK_SYS_USERINFO_SYSUSERID">
+            <End Role="SYS_USER" EntitySet="SYS_USER" />
+            <End Role="SYS_USERINFO" EntitySet="SYS_USERINFO" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Domain" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -56,10 +534,519 @@
           <Property Name="UPDATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
           <Property Name="LastLoginIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYS_POST_USER" Relationship="Domain.FK_SYS_POST_USER_USERID" FromRole="SYS_USER" ToRole="SYS_POST_USER" />
+          <NavigationProperty Name="SYS_USER_DEPARTMENT" Relationship="Domain.FK_SYS_USER_DEPARTMENT_USERID" FromRole="SYS_USER" ToRole="SYS_USER_DEPARTMENT" />
+          <NavigationProperty Name="SYS_USER_PERMISSION" Relationship="Domain.FK_SYS_USER_PERMISSION_USERID" FromRole="SYS_USER" ToRole="SYS_USER_PERMISSION" />
+          <NavigationProperty Name="SYS_USER_ROLE" Relationship="Domain.FK_SYS_USER_ROLE_USERID" FromRole="SYS_USER" ToRole="SYS_USER_ROLE" />
+          <NavigationProperty Name="SYS_USERINFO" Relationship="Domain.FK_SYS_USERINFO_SYSUSERID" FromRole="SYS_USER" ToRole="SYS_USERINFO" />
         </EntityType>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="SYS_USER" EntityType="Self.SYS_USER" />
+          <EntitySet Name="SYS_CODE" EntityType="Domain.SYS_CODE" />
+          <EntitySet Name="SYS_CODE_AREA" EntityType="Domain.SYS_CODE_AREA" />
+          <EntitySet Name="SYS_DEPARTMENT" EntityType="Domain.SYS_DEPARTMENT" />
+          <EntitySet Name="SYS_LOG" EntityType="Domain.SYS_LOG" />
+          <EntitySet Name="SYS_MODULE" EntityType="Domain.SYS_MODULE" />
+          <EntitySet Name="SYS_PERMISSION" EntityType="Domain.SYS_PERMISSION" />
+          <EntitySet Name="SYS_POST" EntityType="Domain.SYS_POST" />
+          <EntitySet Name="SYS_POST_DEPARTMENT" EntityType="Domain.SYS_POST_DEPARTMENT" />
+          <EntitySet Name="SYS_POST_USER" EntityType="Domain.SYS_POST_USER" />
+          <EntitySet Name="SYS_ROLE" EntityType="Domain.SYS_ROLE" />
+          <EntitySet Name="SYS_ROLE_PERMISSION" EntityType="Domain.SYS_ROLE_PERMISSION" />
+          <EntitySet Name="SYS_SYSTEM" EntityType="Domain.SYS_SYSTEM" />
+          <EntitySet Name="SYS_USER_DEPARTMENT" EntityType="Domain.SYS_USER_DEPARTMENT" />
+          <EntitySet Name="SYS_USER_PERMISSION" EntityType="Domain.SYS_USER_PERMISSION" />
+          <EntitySet Name="SYS_USER_ROLE" EntityType="Domain.SYS_USER_ROLE" />
+          <EntitySet Name="SYS_USERINFO" EntityType="Domain.SYS_USERINFO" />
+          <AssociationSet Name="FK_SYS_POST_DEPARTMENT_DPTID" Association="Domain.FK_SYS_POST_DEPARTMENT_DPTID">
+            <End Role="SYS_DEPARTMENT" EntitySet="SYS_DEPARTMENT" />
+            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_DEPARTMENT_DPTID" Association="Domain.FK_SYS_USER_DEPARTMENT_DPTID">
+            <End Role="SYS_DEPARTMENT" EntitySet="SYS_DEPARTMENT" />
+            <End Role="SYS_USER_DEPARTMENT" EntitySet="SYS_USER_DEPARTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_MODULE_SYSTEMID" Association="Domain.FK_SYS_MODULE_SYSTEMID">
+            <End Role="SYS_SYSTEM" EntitySet="SYS_SYSTEM" />
+            <End Role="SYS_MODULE" EntitySet="SYS_MODULE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_PERMISSION_MODULEID" Association="Domain.FK_SYS_PERMISSION_MODULEID">
+            <End Role="SYS_MODULE" EntitySet="SYS_MODULE" />
+            <End Role="SYS_PERMISSION" EntitySet="SYS_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_ROLE_PERMISSION_PERID" Association="Domain.FK_SYS_ROLE_PERMISSION_PERID">
+            <End Role="SYS_PERMISSION" EntitySet="SYS_PERMISSION" />
+            <End Role="SYS_ROLE_PERMISSION" EntitySet="SYS_ROLE_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_PERMISSION_PERID" Association="Domain.FK_SYS_USER_PERMISSION_PERID">
+            <End Role="SYS_PERMISSION" EntitySet="SYS_PERMISSION" />
+            <End Role="SYS_USER_PERMISSION" EntitySet="SYS_USER_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_POST_DEPARTMENT_POSTID" Association="Domain.FK_SYS_POST_DEPARTMENT_POSTID">
+            <End Role="SYS_POST" EntitySet="SYS_POST" />
+            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_POST_USER_POSTDPTID" Association="Domain.FK_SYS_POST_USER_POSTDPTID">
+            <End Role="SYS_POST_DEPARTMENT" EntitySet="SYS_POST_DEPARTMENT" />
+            <End Role="SYS_POST_USER" EntitySet="SYS_POST_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_POST_USER_USERID" Association="Domain.FK_SYS_POST_USER_USERID">
+            <End Role="SYS_USER" EntitySet="SYS_USER" />
+            <End Role="SYS_POST_USER" EntitySet="SYS_POST_USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_ROLE_PERMISSION_ROLEID" Association="Domain.FK_SYS_ROLE_PERMISSION_ROLEID">
+            <End Role="SYS_ROLE" EntitySet="SYS_ROLE" />
+            <End Role="SYS_ROLE_PERMISSION" EntitySet="SYS_ROLE_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_ROLE_ROLEID" Association="Domain.FK_SYS_USER_ROLE_ROLEID">
+            <End Role="SYS_ROLE" EntitySet="SYS_ROLE" />
+            <End Role="SYS_USER_ROLE" EntitySet="SYS_USER_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_DEPARTMENT_USERID" Association="Domain.FK_SYS_USER_DEPARTMENT_USERID">
+            <End Role="SYS_USER" EntitySet="SYS_USER" />
+            <End Role="SYS_USER_DEPARTMENT" EntitySet="SYS_USER_DEPARTMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_PERMISSION_USERID" Association="Domain.FK_SYS_USER_PERMISSION_USERID">
+            <End Role="SYS_USER" EntitySet="SYS_USER" />
+            <End Role="SYS_USER_PERMISSION" EntitySet="SYS_USER_PERMISSION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USER_ROLE_USERID" Association="Domain.FK_SYS_USER_ROLE_USERID">
+            <End Role="SYS_USER" EntitySet="SYS_USER" />
+            <End Role="SYS_USER_ROLE" EntitySet="SYS_USER_ROLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SYS_USERINFO_SYSUSERID" Association="Domain.FK_SYS_USERINFO_SYSUSERID">
+            <End Role="SYS_USER" EntitySet="SYS_USER" />
+            <End Role="SYS_USERINFO" EntitySet="SYS_USERINFO" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="SYS_CODE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODETYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NAMETEXT" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CODEVALUE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SHOWORDER" Type="Int32" />
+          <Property Name="ISCODE" Type="Int32" />
+          <Property Name="REMARK" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" Precision="3" />
+          <Property Name="CREATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="PARENTID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SYS_CODE_AREA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LEVELS" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SYS_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="CODE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BUSINESSLEVEL" Type="Int32" />
+          <Property Name="SHOWORDER" Type="Int32" />
+          <Property Name="CREATEPERID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" Precision="0" />
+          <Property Name="PARENTID" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="UPDATEDATE" Type="DateTime" Precision="0" />
+          <Property Name="UPDATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="PARENTCODE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYS_POST_DEPARTMENT" Relationship="Domain.FK_SYS_POST_DEPARTMENT_DPTID" FromRole="SYS_DEPARTMENT" ToRole="SYS_POST_DEPARTMENT" />
+          <NavigationProperty Name="SYS_USER_DEPARTMENT" Relationship="Domain.FK_SYS_USER_DEPARTMENT_DPTID" FromRole="SYS_DEPARTMENT" ToRole="SYS_USER_DEPARTMENT" />
+        </EntityType>
+        <EntityType Name="SYS_LOG">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATES" Type="DateTime" Precision="3" />
+          <Property Name="LEVELS" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LOGGER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CLIENTUSER" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CLIENTIP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="REQUESTURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ACTION" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MESSAGE" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="EXCEPTION" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SYS_MODULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_BELONGSYSTEM" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="PARENTID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ALIAS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MODULETYPE" Type="Int32" Nullable="false" />
+          <Property Name="ICON" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MODULEPATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ISSHOW" Type="Int32" Nullable="false" />
+          <Property Name="SHOWORDER" Type="Int32" Nullable="false" />
+          <Property Name="LEVELS" Type="Int32" Nullable="false" />
+          <Property Name="IsVillage" Type="Boolean" Nullable="false" />
+          <Property Name="CREATEUSER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SYS_SYSTEM" Relationship="Domain.FK_SYS_MODULE_SYSTEMID" FromRole="SYS_MODULE" ToRole="SYS_SYSTEM" />
+          <NavigationProperty Name="SYS_PERMISSION" Relationship="Domain.FK_SYS_PERMISSION_MODULEID" FromRole="SYS_MODULE" ToRole="SYS_PERMISSION" />
+        </EntityType>
+        <EntityType Name="SYS_PERMISSION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MODULEID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="PERVALUE" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ICON" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SHOWORDER" Type="Int32" />
+          <Property Name="CREATEDATE" Type="DateTime" Precision="0" />
+          <Property Name="CREATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="UPDATEDATE" Type="DateTime" Precision="0" />
+          <Property Name="UPDATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYS_MODULE" Relationship="Domain.FK_SYS_PERMISSION_MODULEID" FromRole="SYS_PERMISSION" ToRole="SYS_MODULE" />
+          <NavigationProperty Name="SYS_ROLE_PERMISSION" Relationship="Domain.FK_SYS_ROLE_PERMISSION_PERID" FromRole="SYS_PERMISSION" ToRole="SYS_ROLE_PERMISSION" />
+          <NavigationProperty Name="SYS_USER_PERMISSION" Relationship="Domain.FK_SYS_USER_PERMISSION_PERID" FromRole="SYS_PERMISSION" ToRole="SYS_USER_PERMISSION" />
+        </EntityType>
+        <EntityType Name="SYS_POST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="POSTNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="POSTTYPE" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="REMARK" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SHOWORDER" Type="Int32" />
+          <Property Name="CREATEUSERID" Type="Int32" />
+          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYS_POST_DEPARTMENT" Relationship="Domain.FK_SYS_POST_DEPARTMENT_POSTID" FromRole="SYS_POST" ToRole="SYS_POST_DEPARTMENT" />
+        </EntityType>
+        <EntityType Name="SYS_POST_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_DEPARTMENT_ID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="FK_POST_ID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYS_DEPARTMENT" Relationship="Domain.FK_SYS_POST_DEPARTMENT_DPTID" FromRole="SYS_POST_DEPARTMENT" ToRole="SYS_DEPARTMENT" />
+          <NavigationProperty Name="SYS_POST" Relationship="Domain.FK_SYS_POST_DEPARTMENT_POSTID" FromRole="SYS_POST_DEPARTMENT" ToRole="SYS_POST" />
+          <NavigationProperty Name="SYS_POST_USER" Relationship="Domain.FK_SYS_POST_USER_POSTDPTID" FromRole="SYS_POST_DEPARTMENT" ToRole="SYS_POST_USER" />
+        </EntityType>
+        <EntityType Name="SYS_POST_USER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_USERID" Type="Int32" Nullable="false" />
+          <Property Name="FK_POST_DEPARTMENTID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SYS_POST_DEPARTMENT" Relationship="Domain.FK_SYS_POST_USER_POSTDPTID" FromRole="SYS_POST_USER" ToRole="SYS_POST_DEPARTMENT" />
+          <NavigationProperty Name="SYS_USER" Relationship="Domain.FK_SYS_POST_USER_USERID" FromRole="SYS_POST_USER" ToRole="SYS_USER" />
+        </EntityType>
+        <EntityType Name="SYS_ROLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLENAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ISCUSTOM" Type="Int32" Nullable="false" />
+          <Property Name="ROLEDESC" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEPERID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATEDATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UPDATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYS_ROLE_PERMISSION" Relationship="Domain.FK_SYS_ROLE_PERMISSION_ROLEID" FromRole="SYS_ROLE" ToRole="SYS_ROLE_PERMISSION" />
+          <NavigationProperty Name="SYS_USER_ROLE" Relationship="Domain.FK_SYS_USER_ROLE_ROLEID" FromRole="SYS_ROLE" ToRole="SYS_USER_ROLE" />
+        </EntityType>
+        <EntityType Name="SYS_ROLE_PERMISSION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLEID" Type="Int32" Nullable="false" />
+          <Property Name="PERMISSIONID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SYS_PERMISSION" Relationship="Domain.FK_SYS_ROLE_PERMISSION_PERID" FromRole="SYS_ROLE_PERMISSION" ToRole="SYS_PERMISSION" />
+          <NavigationProperty Name="SYS_ROLE" Relationship="Domain.FK_SYS_ROLE_PERMISSION_ROLEID" FromRole="SYS_ROLE_PERMISSION" ToRole="SYS_ROLE" />
+        </EntityType>
+        <EntityType Name="SYS_SYSTEM">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SITEURL" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IS_LOGIN" Type="Byte" />
+          <Property Name="DOCKUSER" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DOCKPASS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" Precision="0" />
+          <Property Name="REMARK" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYS_MODULE" Relationship="Domain.FK_SYS_MODULE_SYSTEMID" FromRole="SYS_SYSTEM" ToRole="SYS_MODULE" />
+        </EntityType>
+        <EntityType Name="SYS_USER_DEPARTMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="DEPARTMENT_ID" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYS_DEPARTMENT" Relationship="Domain.FK_SYS_USER_DEPARTMENT_DPTID" FromRole="SYS_USER_DEPARTMENT" ToRole="SYS_DEPARTMENT" />
+          <NavigationProperty Name="SYS_USER" Relationship="Domain.FK_SYS_USER_DEPARTMENT_USERID" FromRole="SYS_USER_DEPARTMENT" ToRole="SYS_USER" />
+        </EntityType>
+        <EntityType Name="SYS_USER_PERMISSION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_USERID" Type="Int32" Nullable="false" />
+          <Property Name="FK_PERMISSIONID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SYS_PERMISSION" Relationship="Domain.FK_SYS_USER_PERMISSION_PERID" FromRole="SYS_USER_PERMISSION" ToRole="SYS_PERMISSION" />
+          <NavigationProperty Name="SYS_USER" Relationship="Domain.FK_SYS_USER_PERMISSION_USERID" FromRole="SYS_USER_PERMISSION" ToRole="SYS_USER" />
+        </EntityType>
+        <EntityType Name="SYS_USER_ROLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_USERID" Type="Int32" Nullable="false" />
+          <Property Name="FK_ROLEID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SYS_ROLE" Relationship="Domain.FK_SYS_USER_ROLE_ROLEID" FromRole="SYS_USER_ROLE" ToRole="SYS_ROLE" />
+          <NavigationProperty Name="SYS_USER" Relationship="Domain.FK_SYS_USER_ROLE_USERID" FromRole="SYS_USER_ROLE" ToRole="SYS_USER" />
+        </EntityType>
+        <EntityType Name="SYS_USERINFO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="USERID" Type="Int32" Nullable="false" />
+          <Property Name="POSTCODE" Type="Int32" />
+          <Property Name="PHONE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="OFFICEPHONE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="EMAILADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SECONDPHONE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="WORKCODE" Type="Int32" />
+          <Property Name="SEXCODE" Type="Int32" />
+          <Property Name="BIRTHDAY" Type="DateTime" Precision="3" />
+          <Property Name="NATIONCODE" Type="Int32" />
+          <Property Name="IDNUMBER" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="MARRYCODE" Type="Int32" />
+          <Property Name="IDENTITYCODE" Type="Int32" />
+          <Property Name="HomeTown" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ACCOUNTLOCATION" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="XUELI" Type="Int32" />
+          <Property Name="ZHICHENG" Type="Int32" />
+          <Property Name="GRADUATIONSCHOOL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SPECIALTY" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PHOTOOLDNAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PHOTONEWNAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PHOTOTYPE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RESUMEOLDNAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RESUMENEWNAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RESUMETYPE" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HuJiSuoZaiDi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HUJIPAICHUSUO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="WORKDATE" Type="DateTime" Precision="3" />
+          <Property Name="JINRUDATE" Type="DateTime" Precision="3" />
+          <Property Name="CARNUMBER" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="QQ" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="WEBCHATOPENID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CREATEDATE" Type="DateTime" Precision="3" />
+          <Property Name="CREATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="UPDATEDATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATEUSER" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SYS_USER" Relationship="Domain.FK_SYS_USERINFO_SYSUSERID" FromRole="SYS_USERINFO" ToRole="SYS_USER" />
+        </EntityType>
+        <Association Name="FK_SYS_POST_DEPARTMENT_DPTID">
+          <End Type="Domain.SYS_DEPARTMENT" Role="SYS_DEPARTMENT" Multiplicity="1" />
+          <End Type="Domain.SYS_POST_DEPARTMENT" Role="SYS_POST_DEPARTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_DEPARTMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_POST_DEPARTMENT">
+              <PropertyRef Name="FK_DEPARTMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_DEPARTMENT_DPTID">
+          <End Type="Domain.SYS_DEPARTMENT" Role="SYS_DEPARTMENT" Multiplicity="1" />
+          <End Type="Domain.SYS_USER_DEPARTMENT" Role="SYS_USER_DEPARTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_DEPARTMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_DEPARTMENT">
+              <PropertyRef Name="DEPARTMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_MODULE_SYSTEMID">
+          <End Type="Domain.SYS_SYSTEM" Role="SYS_SYSTEM" Multiplicity="1" />
+          <End Type="Domain.SYS_MODULE" Role="SYS_MODULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_SYSTEM">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_MODULE">
+              <PropertyRef Name="FK_BELONGSYSTEM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_PERMISSION_MODULEID">
+          <End Type="Domain.SYS_MODULE" Role="SYS_MODULE" Multiplicity="1" />
+          <End Type="Domain.SYS_PERMISSION" Role="SYS_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_MODULE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_PERMISSION">
+              <PropertyRef Name="MODULEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_ROLE_PERMISSION_PERID">
+          <End Type="Domain.SYS_PERMISSION" Role="SYS_PERMISSION" Multiplicity="1" />
+          <End Type="Domain.SYS_ROLE_PERMISSION" Role="SYS_ROLE_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_PERMISSION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_ROLE_PERMISSION">
+              <PropertyRef Name="PERMISSIONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_PERMISSION_PERID">
+          <End Type="Domain.SYS_PERMISSION" Role="SYS_PERMISSION" Multiplicity="1" />
+          <End Type="Domain.SYS_USER_PERMISSION" Role="SYS_USER_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_PERMISSION">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_PERMISSION">
+              <PropertyRef Name="FK_PERMISSIONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_POST_DEPARTMENT_POSTID">
+          <End Type="Domain.SYS_POST" Role="SYS_POST" Multiplicity="1" />
+          <End Type="Domain.SYS_POST_DEPARTMENT" Role="SYS_POST_DEPARTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_POST">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_POST_DEPARTMENT">
+              <PropertyRef Name="FK_POST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_POST_USER_POSTDPTID">
+          <End Type="Domain.SYS_POST_DEPARTMENT" Role="SYS_POST_DEPARTMENT" Multiplicity="1" />
+          <End Type="Domain.SYS_POST_USER" Role="SYS_POST_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_POST_DEPARTMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_POST_USER">
+              <PropertyRef Name="FK_POST_DEPARTMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_POST_USER_USERID">
+          <End Type="Domain.SYS_USER" Role="SYS_USER" Multiplicity="1" />
+          <End Type="Domain.SYS_POST_USER" Role="SYS_POST_USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_POST_USER">
+              <PropertyRef Name="FK_USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_ROLE_PERMISSION_ROLEID">
+          <End Type="Domain.SYS_ROLE" Role="SYS_ROLE" Multiplicity="1" />
+          <End Type="Domain.SYS_ROLE_PERMISSION" Role="SYS_ROLE_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_ROLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_ROLE_PERMISSION">
+              <PropertyRef Name="ROLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_ROLE_ROLEID">
+          <End Type="Domain.SYS_ROLE" Role="SYS_ROLE" Multiplicity="1" />
+          <End Type="Domain.SYS_USER_ROLE" Role="SYS_USER_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_ROLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_ROLE">
+              <PropertyRef Name="FK_ROLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_DEPARTMENT_USERID">
+          <End Type="Domain.SYS_USER" Role="SYS_USER" Multiplicity="1" />
+          <End Type="Domain.SYS_USER_DEPARTMENT" Role="SYS_USER_DEPARTMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_DEPARTMENT">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_PERMISSION_USERID">
+          <End Type="Domain.SYS_USER" Role="SYS_USER" Multiplicity="1" />
+          <End Type="Domain.SYS_USER_PERMISSION" Role="SYS_USER_PERMISSION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_PERMISSION">
+              <PropertyRef Name="FK_USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USER_ROLE_USERID">
+          <End Type="Domain.SYS_USER" Role="SYS_USER" Multiplicity="1" />
+          <End Type="Domain.SYS_USER_ROLE" Role="SYS_USER_ROLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USER_ROLE">
+              <PropertyRef Name="FK_USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SYS_USERINFO_SYSUSERID">
+          <End Type="Domain.SYS_USER" Role="SYS_USER" Multiplicity="1" />
+          <End Type="Domain.SYS_USERINFO" Role="SYS_USERINFO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SYS_USER">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SYS_USERINFO">
+              <PropertyRef Name="USERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -86,6 +1073,245 @@
                 <ScalarProperty Name="UPDATEUSER" ColumnName="UPDATEUSER" />
                 <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
                 <ScalarProperty Name="LastLoginIP" ColumnName="LastLoginIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_CODE">
+            <EntityTypeMapping TypeName="Domain.SYS_CODE">
+              <MappingFragment StoreEntitySet="SYS_CODE">
+                <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+                <ScalarProperty Name="UPDATEUSER" ColumnName="UPDATEUSER" />
+                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
+                <ScalarProperty Name="CREATEUSER" ColumnName="CREATEUSER" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="ISCODE" ColumnName="ISCODE" />
+                <ScalarProperty Name="SHOWORDER" ColumnName="SHOWORDER" />
+                <ScalarProperty Name="CODEVALUE" ColumnName="CODEVALUE" />
+                <ScalarProperty Name="NAMETEXT" ColumnName="NAMETEXT" />
+                <ScalarProperty Name="CODETYPE" ColumnName="CODETYPE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_CODE_AREA">
+            <EntityTypeMapping TypeName="Domain.SYS_CODE_AREA">
+              <MappingFragment StoreEntitySet="SYS_CODE_AREA">
+                <ScalarProperty Name="LEVELS" ColumnName="LEVELS" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_DEPARTMENT">
+            <EntityTypeMapping TypeName="Domain.SYS_DEPARTMENT">
+              <MappingFragment StoreEntitySet="SYS_DEPARTMENT">
+                <ScalarProperty Name="PARENTCODE" ColumnName="PARENTCODE" />
+                <ScalarProperty Name="UPDATEUSER" ColumnName="UPDATEUSER" />
+                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
+                <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="CREATEPERID" ColumnName="CREATEPERID" />
+                <ScalarProperty Name="SHOWORDER" ColumnName="SHOWORDER" />
+                <ScalarProperty Name="BUSINESSLEVEL" ColumnName="BUSINESSLEVEL" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_LOG">
+            <EntityTypeMapping TypeName="Domain.SYS_LOG">
+              <MappingFragment StoreEntitySet="SYS_LOG">
+                <ScalarProperty Name="EXCEPTION" ColumnName="EXCEPTION" />
+                <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+                <ScalarProperty Name="ACTION" ColumnName="ACTION" />
+                <ScalarProperty Name="REQUESTURL" ColumnName="REQUESTURL" />
+                <ScalarProperty Name="CLIENTIP" ColumnName="CLIENTIP" />
+                <ScalarProperty Name="CLIENTUSER" ColumnName="CLIENTUSER" />
+                <ScalarProperty Name="LOGGER" ColumnName="LOGGER" />
+                <ScalarProperty Name="LEVELS" ColumnName="LEVELS" />
+                <ScalarProperty Name="DATES" ColumnName="DATES" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_MODULE">
+            <EntityTypeMapping TypeName="Domain.SYS_MODULE">
+              <MappingFragment StoreEntitySet="SYS_MODULE">
+                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
+                <ScalarProperty Name="UPDATEUSER" ColumnName="UPDATEUSER" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="CREATEUSER" ColumnName="CREATEUSER" />
+                <ScalarProperty Name="IsVillage" ColumnName="IsVillage" />
+                <ScalarProperty Name="LEVELS" ColumnName="LEVELS" />
+                <ScalarProperty Name="SHOWORDER" ColumnName="SHOWORDER" />
+                <ScalarProperty Name="ISSHOW" ColumnName="ISSHOW" />
+                <ScalarProperty Name="MODULEPATH" ColumnName="MODULEPATH" />
+                <ScalarProperty Name="ICON" ColumnName="ICON" />
+                <ScalarProperty Name="MODULETYPE" ColumnName="MODULETYPE" />
+                <ScalarProperty Name="ALIAS" ColumnName="ALIAS" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PARENTID" ColumnName="PARENTID" />
+                <ScalarProperty Name="FK_BELONGSYSTEM" ColumnName="FK_BELONGSYSTEM" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_PERMISSION">
+            <EntityTypeMapping TypeName="Domain.SYS_PERMISSION">
+              <MappingFragment StoreEntitySet="SYS_PERMISSION">
+                <ScalarProperty Name="UPDATEUSER" ColumnName="UPDATEUSER" />
+                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
+                <ScalarProperty Name="CREATEUSER" ColumnName="CREATEUSER" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="SHOWORDER" ColumnName="SHOWORDER" />
+                <ScalarProperty Name="ICON" ColumnName="ICON" />
+                <ScalarProperty Name="PERVALUE" ColumnName="PERVALUE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="MODULEID" ColumnName="MODULEID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_POST">
+            <EntityTypeMapping TypeName="Domain.SYS_POST">
+              <MappingFragment StoreEntitySet="SYS_POST">
+                <ScalarProperty Name="UPDATEUSER" ColumnName="UPDATEUSER" />
+                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="CREATEUSERID" ColumnName="CREATEUSERID" />
+                <ScalarProperty Name="SHOWORDER" ColumnName="SHOWORDER" />
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="POSTTYPE" ColumnName="POSTTYPE" />
+                <ScalarProperty Name="POSTNAME" ColumnName="POSTNAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_POST_DEPARTMENT">
+            <EntityTypeMapping TypeName="Domain.SYS_POST_DEPARTMENT">
+              <MappingFragment StoreEntitySet="SYS_POST_DEPARTMENT">
+                <ScalarProperty Name="FK_POST_ID" ColumnName="FK_POST_ID" />
+                <ScalarProperty Name="FK_DEPARTMENT_ID" ColumnName="FK_DEPARTMENT_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_POST_USER">
+            <EntityTypeMapping TypeName="Domain.SYS_POST_USER">
+              <MappingFragment StoreEntitySet="SYS_POST_USER">
+                <ScalarProperty Name="FK_POST_DEPARTMENTID" ColumnName="FK_POST_DEPARTMENTID" />
+                <ScalarProperty Name="FK_USERID" ColumnName="FK_USERID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_ROLE">
+            <EntityTypeMapping TypeName="Domain.SYS_ROLE">
+              <MappingFragment StoreEntitySet="SYS_ROLE">
+                <ScalarProperty Name="UPDATEUSER" ColumnName="UPDATEUSER" />
+                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="CREATEPERID" ColumnName="CREATEPERID" />
+                <ScalarProperty Name="ROLEDESC" ColumnName="ROLEDESC" />
+                <ScalarProperty Name="ISCUSTOM" ColumnName="ISCUSTOM" />
+                <ScalarProperty Name="ROLENAME" ColumnName="ROLENAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_ROLE_PERMISSION">
+            <EntityTypeMapping TypeName="Domain.SYS_ROLE_PERMISSION">
+              <MappingFragment StoreEntitySet="SYS_ROLE_PERMISSION">
+                <ScalarProperty Name="PERMISSIONID" ColumnName="PERMISSIONID" />
+                <ScalarProperty Name="ROLEID" ColumnName="ROLEID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_SYSTEM">
+            <EntityTypeMapping TypeName="Domain.SYS_SYSTEM">
+              <MappingFragment StoreEntitySet="SYS_SYSTEM">
+                <ScalarProperty Name="REMARK" ColumnName="REMARK" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="DOCKPASS" ColumnName="DOCKPASS" />
+                <ScalarProperty Name="DOCKUSER" ColumnName="DOCKUSER" />
+                <ScalarProperty Name="IS_LOGIN" ColumnName="IS_LOGIN" />
+                <ScalarProperty Name="SITEURL" ColumnName="SITEURL" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_USER_DEPARTMENT">
+            <EntityTypeMapping TypeName="Domain.SYS_USER_DEPARTMENT">
+              <MappingFragment StoreEntitySet="SYS_USER_DEPARTMENT">
+                <ScalarProperty Name="DEPARTMENT_ID" ColumnName="DEPARTMENT_ID" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_USER_PERMISSION">
+            <EntityTypeMapping TypeName="Domain.SYS_USER_PERMISSION">
+              <MappingFragment StoreEntitySet="SYS_USER_PERMISSION">
+                <ScalarProperty Name="FK_PERMISSIONID" ColumnName="FK_PERMISSIONID" />
+                <ScalarProperty Name="FK_USERID" ColumnName="FK_USERID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_USER_ROLE">
+            <EntityTypeMapping TypeName="Domain.SYS_USER_ROLE">
+              <MappingFragment StoreEntitySet="SYS_USER_ROLE">
+                <ScalarProperty Name="FK_ROLEID" ColumnName="FK_ROLEID" />
+                <ScalarProperty Name="FK_USERID" ColumnName="FK_USERID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_USERINFO">
+            <EntityTypeMapping TypeName="Domain.SYS_USERINFO">
+              <MappingFragment StoreEntitySet="SYS_USERINFO">
+                <ScalarProperty Name="UPDATEUSER" ColumnName="UPDATEUSER" />
+                <ScalarProperty Name="UPDATEDATE" ColumnName="UPDATEDATE" />
+                <ScalarProperty Name="CREATEUSER" ColumnName="CREATEUSER" />
+                <ScalarProperty Name="CREATEDATE" ColumnName="CREATEDATE" />
+                <ScalarProperty Name="WEBCHATOPENID" ColumnName="WEBCHATOPENID" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+                <ScalarProperty Name="CARNUMBER" ColumnName="CARNUMBER" />
+                <ScalarProperty Name="JINRUDATE" ColumnName="JINRUDATE" />
+                <ScalarProperty Name="WORKDATE" ColumnName="WORKDATE" />
+                <ScalarProperty Name="HUJIPAICHUSUO" ColumnName="HUJIPAICHUSUO" />
+                <ScalarProperty Name="HuJiSuoZaiDi" ColumnName="HuJiSuoZaiDi" />
+                <ScalarProperty Name="RESUMETYPE" ColumnName="RESUMETYPE" />
+                <ScalarProperty Name="RESUMENEWNAME" ColumnName="RESUMENEWNAME" />
+                <ScalarProperty Name="RESUMEOLDNAME" ColumnName="RESUMEOLDNAME" />
+                <ScalarProperty Name="PHOTOTYPE" ColumnName="PHOTOTYPE" />
+                <ScalarProperty Name="PHOTONEWNAME" ColumnName="PHOTONEWNAME" />
+                <ScalarProperty Name="PHOTOOLDNAME" ColumnName="PHOTOOLDNAME" />
+                <ScalarProperty Name="SPECIALTY" ColumnName="SPECIALTY" />
+                <ScalarProperty Name="GRADUATIONSCHOOL" ColumnName="GRADUATIONSCHOOL" />
+                <ScalarProperty Name="ZHICHENG" ColumnName="ZHICHENG" />
+                <ScalarProperty Name="XUELI" ColumnName="XUELI" />
+                <ScalarProperty Name="ACCOUNTLOCATION" ColumnName="ACCOUNTLOCATION" />
+                <ScalarProperty Name="HomeTown" ColumnName="HomeTown" />
+                <ScalarProperty Name="IDENTITYCODE" ColumnName="IDENTITYCODE" />
+                <ScalarProperty Name="MARRYCODE" ColumnName="MARRYCODE" />
+                <ScalarProperty Name="IDNUMBER" ColumnName="IDNUMBER" />
+                <ScalarProperty Name="NATIONCODE" ColumnName="NATIONCODE" />
+                <ScalarProperty Name="BIRTHDAY" ColumnName="BIRTHDAY" />
+                <ScalarProperty Name="SEXCODE" ColumnName="SEXCODE" />
+                <ScalarProperty Name="WORKCODE" ColumnName="WORKCODE" />
+                <ScalarProperty Name="SECONDPHONE" ColumnName="SECONDPHONE" />
+                <ScalarProperty Name="EMAILADDRESS" ColumnName="EMAILADDRESS" />
+                <ScalarProperty Name="OFFICEPHONE" ColumnName="OFFICEPHONE" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+                <ScalarProperty Name="POSTCODE" ColumnName="POSTCODE" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
