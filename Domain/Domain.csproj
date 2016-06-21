@@ -71,7 +71,55 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Sql_Wkdb.edmx</DependentUpon>
     </Compile>
+    <Compile Include="SYS_CODE.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_CODE_AREA.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_DEPARTMENT.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_LOG.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_MODULE.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_PERMISSION.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_POST.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_POST_DEPARTMENT.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_POST_USER.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_ROLE.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_ROLE_PERMISSION.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_SYSTEM.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="SYS_USER.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_USERINFO.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_USER_DEPARTMENT.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_USER_PERMISSION.cs">
+      <DependentUpon>Sql_Wkdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SYS_USER_ROLE.cs">
       <DependentUpon>Sql_Wkdb.tt</DependentUpon>
     </Compile>
   </ItemGroup>
