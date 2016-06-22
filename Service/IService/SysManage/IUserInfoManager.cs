@@ -8,5 +8,6 @@ namespace Service.IService
 {
     public interface IUserInfoManager : IRepository<Domain.SYS_USERINFO>
     {
+        
     }
 }
