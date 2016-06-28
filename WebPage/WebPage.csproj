@@ -143,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\verif_code.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +151,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <EmbeddedResource Include="Config\Controllers.xml" />
+    <Content Include="Content\css\login\login.css" />
+    <Content Include="Content\images\login\egg_shell.png" />
+    <Content Include="Content\images\login\login_top_tip.png" />
+    <Content Include="Content\images\login\puff.svg" />
+    <Content Include="Content\js\jquery-ui.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\login.min.js" />
+    <Content Include="Content\js\sketch.min.js" />
+    <Content Include="Content\js\stopExecutionOnTimeout.js" />
+    <Content Include="favicon.ico" />
     <Content Include="Views\Account\Index.cshtml" />
     <None Include="Content\js\jquery-1.8.2.intellisense.js" />
     <EmbeddedResource Include="Config\ComControllers.xml" />
@@ -189,7 +200,6 @@
     <Folder Include="Areas\SysManage\Models\" />
     <Folder Include="Areas\SysManage\Views\Shared\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
