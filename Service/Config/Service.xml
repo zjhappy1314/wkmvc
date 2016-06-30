@@ -3,6 +3,13 @@
   <description>Spring注入Service，容器指向本层层封装的接口，舍弃Dao层，减少代码量</description>
   <!--系统管理Begin-->
   <!--用户管理-->
-  <object id="Service.User" type="Service.ServiceImp.UserManage,Service" singleton="false"></object>
+  <object id="Service.User" type="Service.ServiceImp.UserManage,Service" singleton="false">
+    <property name="UserInfoManage" ref="Service.UserInfo"></property>
+    <property name="UserRoleManage" ref="Service.UserRole"></property>
+    <property name="UserPermissionManage" ref="Service.UserPermission"></property>
+    <property name="PostUserManage" ref="Service.PostUser"></property>
+    <property name="PermissionManage" ref="Service.Permission"></property>
+    <property name="DepartmentManage" ref="Service.Depatrment"></property>
+  </object>
   <!--系统管理end-->
 </objects>
